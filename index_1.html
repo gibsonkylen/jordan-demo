@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jordan Reyes · Bayline Home Co.</title>
+<meta name="description" content="Jordan Reyes helps first-time buyers and growing families find their place in North County San Diego. Sample site by Summit Wing.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── Paste your Apps Script web app URL into ENDPOINT (bottom of the page) ── */
+  :root{
+    --ink:#10242B; --deep:#14444F; --teal:#1F6B73; --sea:#5FA3A6;
+    --sand:#F5EFE6; --sand2:#EAE1D3; --paper:#FFFDF9; --sun:#E8915B;
+    --muted:#5B6B70; --line:#DDD4C6; --ok:#2F7D5B; --err:#B4442F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--sand);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{position:absolute;inset:0 0 auto 0;z-index:5}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+  .brand svg{width:30px;height:30px}
+  .brand b{font-family:Fraunces,serif;font-weight:600;font-size:20px;letter-spacing:.2px}
+  .brand span{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.75;margin-top:-2px}
+  .navlinks{display:flex;gap:28px;align-items:center;font-size:14px;color:#E6F0EF}
+  .navlinks a{text-decoration:none;opacity:.9}
+  .navlinks a:hover{opacity:1}
+  .navlinks .cta{background:#fff;color:var(--deep);padding:9px 16px;border-radius:999px;font-weight:600;opacity:1}
+
+  /* Hero */
+  .hero{position:relative;background:linear-gradient(170deg,#0F3940 0%,#1A5A62 55%,#2C7A7C 100%);color:#fff;overflow:hidden}
+  .hero .scene{position:absolute;inset:auto 0 0 0;width:100%;height:auto;pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:132px;padding-bottom:120px}
+  .eyebrow{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:#BFE0DD;font-weight:600}
+  h1{font-family:Fraunces,serif;font-weight:500;font-size:clamp(40px,5.4vw,64px);line-height:1.05;margin:16px 0 20px;letter-spacing:-.5px}
+  h1 em{font-style:italic;color:#F7C9A6}
+  .lede{font-size:18px;color:#D9EAE8;max-width:30em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .chips span{font-size:13px;border:1px solid rgba(255,255,255,.28);padding:6px 12px;border-radius:999px;color:#EAF4F3}
+
+  /* Form card */
+  .card{background:var(--paper);color:var(--ink);border-radius:18px;padding:30px;box-shadow:0 30px 60px -20px rgba(4,25,29,.55)}
+  .card h2{font-family:Fraunces,serif;font-weight:600;font-size:24px;line-height:1.2}
+  .card p.sub{color:var(--muted);font-size:14px;margin:6px 0 20px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  label{font-size:12.5px;font-weight:600;color:#33484E}
+  label i{font-style:normal;color:var(--muted);font-weight:400}
+  input,select,textarea{font:inherit;font-size:15px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;transition:border-color .15s,box-shadow .15s}
+  textarea{resize:vertical;min-height:76px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,107,115,.15)}
+  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg label{display:flex;justify-content:center;padding:10px 0;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:500;font-size:14px;color:var(--ink);cursor:pointer;transition:all .15s}
+  .seg input:checked+label{background:var(--deep);border-color:var(--deep);color:#fff}
+  .seg input:focus-visible+label{box-shadow:0 0 0 3px rgba(31,107,115,.25)}
+  .hp{position:absolute;left:-9999px}
+  button.submit{width:100%;margin-top:6px;border:0;border-radius:12px;background:var(--sun);color:#fff;font:600 16px Inter,sans-serif;padding:14px;cursor:pointer;transition:transform .1s,filter .15s}
+  button.submit:hover{filter:brightness(1.05)}
+  button.submit:active{transform:translateY(1px)}
+  button.submit[disabled]{opacity:.7;cursor:progress}
+  .fine{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+  .error{color:var(--err);font-size:13px;margin-top:10px;display:none}
+  .done{display:none;text-align:center;padding:28px 6px}
+  .done .tick{width:56px;height:56px;border-radius:50%;background:#E3F1EA;color:var(--ok);display:grid;place-items:center;margin:0 auto 16px}
+  .done h2{margin-bottom:8px}
+  .done p{color:var(--muted)}
+
+  /* Sections */
+  section{padding:96px 0}
+  .kicker{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--teal);font-weight:600}
+  h3.title{font-family:Fraunces,serif;font-weight:500;font-size:clamp(30px,3.6vw,42px);line-height:1.12;margin:12px 0 16px;letter-spacing:-.3px}
+  .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
+  .portrait{aspect-ratio:4/5;border-radius:18px;background:linear-gradient(160deg,var(--sand2),#D8CCB9);position:relative;overflow:hidden;display:grid;place-items:center}
+  .portrait .mono{font-family:Fraunces,serif;font-size:96px;color:#fff;opacity:.9}
+  .portrait .tag{position:absolute;left:16px;bottom:16px;background:var(--paper);border-radius:10px;padding:10px 14px;font-size:13px;box-shadow:0 8px 20px -10px rgba(0,0,0,.3)}
+  .portrait .tag b{display:block;font-size:15px}
+  .about p{color:#3D5056;font-size:17px;margin-bottom:14px;max-width:36em}
+  .facts{display:flex;gap:40px;margin-top:28px}
+  .facts b{font-family:Fraunces,serif;font-size:34px;font-weight:500;color:var(--deep);display:block;line-height:1}
+  .facts span{font-size:13px;color:var(--muted)}
+
+  .areas{background:var(--paper)}
+  .area-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+  .area{border-radius:16px;overflow:hidden;background:var(--sand);border:1px solid var(--line)}
+  .area svg{display:block;width:100%;height:auto}
+  .area div{padding:16px 18px 20px}
+  .area h4{font-family:Fraunces,serif;font-weight:600;font-size:20px}
+  .area p{font-size:14px;color:var(--muted);margin-top:4px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
+  .step{padding:26px;border-radius:16px;background:var(--paper);border:1px solid var(--line)}
+  .step .n{font-family:Fraunces,serif;font-size:15px;color:var(--sun);font-weight:600}
+  .step h4{font-size:18px;margin:8px 0 6px}
+  .step p{font-size:15px;color:var(--muted)}
+
+  .band{background:var(--deep);color:#fff;text-align:center;padding:80px 0}
+  .band h3{font-family:Fraunces,serif;font-weight:500;font-size:clamp(28px,3.4vw,40px);margin-bottom:12px}
+  .band p{color:#CFE3E1;margin-bottom:26px}
+  .band a{display:inline-block;background:var(--sun);color:#fff;text-decoration:none;font-weight:600;padding:14px 26px;border-radius:12px}
+
+  footer{background:var(--ink);color:#9FB2B5;font-size:13px;padding:28px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:#DCE8E9}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:112px;padding-bottom:96px}
+    .navlinks a:not(.cta){display:none}
+    .about{grid-template-columns:1fr;gap:36px}
+    .portrait{max-width:380px}
+    .area-grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr}
+  }
+  @media (max-width:520px){
+    .wrap{padding:0 16px}
+    .card{padding:22px}
+    .grid2{grid-template-columns:1fr;gap:0}
+    .area-grid{grid-template-columns:1fr}
+    .facts{gap:24px}
+    section{padding:72px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" stroke="#fff" stroke-opacity=".5"/><path d="M6 19c3-2 6-2 10 0s7 2 10 0" stroke="#F7C9A6" stroke-width="2" stroke-linecap="round"/><path d="M6 23c3-2 6-2 10 0s7 2 10 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="12" r="3.5" fill="#F7C9A6"/></svg>
+      <div><b>Bayline</b><span>Home Co.</span></div>
+    </a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#areas">Areas</a>
+      <a href="#how">How I work</a>
+      <a class="cta" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="scene" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 150 C 200 110, 380 170, 600 140 S 1000 90, 1200 130 S 1380 150, 1440 140 V260 H0Z" fill="#fff" fill-opacity=".05"/>
+    <path d="M0 190 C 240 160, 420 210, 680 185 S 1100 150, 1440 180 V260 H0Z" fill="#fff" fill-opacity=".07"/>
+    <path d="M0 230 C 300 205, 560 245, 860 225 S 1260 205, 1440 220 V260 H0Z" fill="#F5EFE6"/>
+  </svg>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Jordan Reyes · North County San Diego</div>
+      <h1>Find your place<br>by the <em>coast.</em></h1>
+      <p class="lede">I help first-time buyers and growing families find the right home in Carlsbad, Oceanside, Encinitas, and San Marcos, with clear advice and no pressure.</p>
+      <div class="chips"><span>First-time buyers</span><span>Move-up families</span><span>Sellers</span></div>
+    </div>
+
+    <div class="card" id="contact">
+      <form id="lead" novalidate>
+        <h2>Let's talk about your move</h2>
+        <p class="sub">Tell me a little about what you're looking for. I'll reply personally within minutes.</p>
+
+        <div class="grid2">
+          <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required maxlength="80"></div>
+          <div class="field"><label for="phone">Phone <i>(optional)</i></label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
+        </div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="120"></div>
+
+        <div class="field">
+          <label>I'm looking to</label>
+          <div class="seg">
+            <input type="radio" id="t-buy" name="intent" value="Buy" checked><label for="t-buy">Buy</label>
+            <input type="radio" id="t-sell" name="intent" value="Sell"><label for="t-sell">Sell</label>
+            <input type="radio" id="t-both" name="intent" value="Both"><label for="t-both">Both</label>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field"><label for="timeline">Timeline</label>
+            <select id="timeline" name="timeline">
+              <option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just browsing</option>
+            </select>
+          </div>
+          <div class="field"><label for="price">Price range <i>(optional)</i></label><input id="price" name="price" placeholder="e.g. $800k–$1M" maxlength="60"></div>
+        </div>
+        <div class="field"><label for="areas">Areas you're interested in <i>(optional)</i></label><input id="areas" name="areas" placeholder="e.g. Carlsbad, Encinitas" maxlength="120"></div>
+        <div class="field"><label for="message">Anything else I should know? <i>(optional)</i></label><textarea id="message" name="message" maxlength="1500" placeholder="Must-haves, questions, where you're moving from…"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
+        <button class="submit" type="submit">Send to Jordan</button>
+        <div class="error" id="err">Please add your name and a valid email.</div>
+        <p class="fine">No spam. Your info goes only to Jordan.</p>
+      </form>
+
+      <div class="done" id="done" role="status" aria-live="polite">
+        <div class="tick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <h2 id="done-title">Thanks!</h2>
+        <p>Check your inbox. I'll be in touch in just a minute or two.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="portrait">
+      <div class="mono">JR</div>
+      <div class="tag"><b>Jordan Reyes</b>Bayline Home Co.</div>
+    </div>
+    <div>
+      <div class="kicker">About Jordan</div>
+      <h3 class="title">A local guide for one of the biggest decisions you'll make.</h3>
+      <p>Buying your first home, or making room for a growing family, should feel exciting, not overwhelming. I've spent six years helping people across North County figure out what they can afford, where they'll be happiest, and how to win the right home without overpaying.</p>
+      <p>You'll always get straight answers, fast replies, and a plan that fits your timeline.</p>
+      <div class="facts">
+        <div><b>6 yrs</b><span>in North County</span></div>
+        <div><b>4</b><span>cities served</span></div>
+        <div><b>Minutes</b><span>to a reply</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="kicker">Where I work</div>
+    <h3 class="title">Four coastal cities, each with its own pace.</h3>
+    <div class="area-grid">
+      <div class="area">
+        <svg viewBox="0 0 300 150"><rect width="300" height="150" fill="#CFE5E4"/><circle cx="230" cy="48" r="20" fill="#F7C9A6"/><path d="M0 100 Q75 82 150 98 T300 92 V150H0Z" fill="#5FA3A6"/><path d="M0 118 Q80 104 160 118 T300 112 V150H0Z" fill="#1F6B73"/></svg>
+        <div><h4>Carlsbad</h4><p>Beach towns, strong schools, and the flower fields in spring.</p></div>
+      </div>
+      <div class="area">
+        <svg viewBox="0 0 300 150"><rect width="300" height="150" fill="#F2DCC8"/><rect x="40" y="62" width="10" height="70" fill="#14444F"/><rect x="0" y="92" width="300" height="10" fill="#14444F"/><path d="M0 110 Q90 96 180 112 T300 106 V150H0Z" fill="#5FA3A6"/><circle cx="70" cy="44" r="16" fill="#E8915B"/></svg>
+        <div><h4>Oceanside</h4><p>Harbor, pier, and more home for your money near the coast.</p></div>
+      </div>
+      <div class="area">
+        <svg viewBox="0 0 300 150"><rect width="300" height="150" fill="#E3E9DA"/><path d="M0 80 L60 60 L120 74 L190 52 L300 70 V150H0Z" fill="#9DB8A0"/><path d="M0 112 Q100 96 200 110 T300 104 V150H0Z" fill="#1F6B73"/><circle cx="246" cy="40" r="14" fill="#F7C9A6"/></svg>
+        <div><h4>Encinitas</h4><p>Laid-back surf town with walkable downtowns and a creative feel.</p></div>
+      </div>
+      <div class="area">
+        <svg viewBox="0 0 300 150"><rect width="300" height="150" fill="#E9E1D2"/><path d="M0 96 L70 54 L130 84 L200 40 L300 92 V150H0Z" fill="#B7A68C"/><path d="M0 120 L80 100 L160 116 L240 98 L300 110 V150H0Z" fill="#7F8E73"/><circle cx="60" cy="36" r="14" fill="#E8915B"/></svg>
+        <div><h4>San Marcos</h4><p>Newer neighborhoods, trails, and space to grow inland.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">How I work</div>
+    <h3 class="title">Simple, fast, and on your schedule.</h3>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h4>Tell me what you need</h4><p>Fill out the form and you'll hear back from me within minutes, not days.</p></div>
+      <div class="step"><div class="n">02</div><h4>Get a clear plan</h4><p>We'll talk budget, timing, and must-haves, then line up homes worth your time.</p></div>
+      <div class="step"><div class="n">03</div><h4>Move with confidence</h4><p>From the first showing to closing day, I'll keep you updated every step.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <h3>Ready when you are.</h3>
+    <p>Whether you're moving next month or next year, it starts with a quick hello.</p>
+    <a href="#contact">Get in touch</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Sample site · Jordan Reyes and Bayline Home Co. are fictional.</span>
+    <span>Lead replies powered by <a href="https://summitwing.com">Summit Wing</a></span>
+  </div>
+</footer>
+
+<script>
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwc9rJ2PTApy8tlfOh0jJ-hsiUukwcdPUJcnG0LtA-fCGdjgAyp_twXhra9rFISzt2e/exec';
+
+  const form = document.getElementById('lead');
+  const err = document.getElementById('err');
+  const btn = form.querySelector('button');
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const d = Object.fromEntries(new FormData(form));
+    const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email || '');
+    if (!d.name.trim() || !okEmail) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      // Send the lead, but don't make the visitor wait for the AI reply to be written.
+      const send = fetch(ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(d),
+      });
+      await Promise.race([send, new Promise(r => setTimeout(r, 2500))]);
+      document.getElementById('done-title').textContent = `Thanks, ${d.name.trim().split(' ')[0]}!`;
+      form.style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+    } catch (e) {
+      btn.disabled = false; btn.textContent = 'Send to Jordan';
+      err.textContent = 'Something went wrong. Please try again in a moment.';
+      err.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
